@@ -1,16 +1,18 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { Modal, Button } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 function RegistroUsuario() {
-  // Estados para almacenar los valores de los inputs
   const [nombre, setNombre] = useState('');
   const [correo, setCorreo] = useState('');
   const [contrasena, setContrasena] = useState('');
+  const [showModal, setShowModal] = useState(false); // Estado para mostrar/ocultar el modal
+  const [modalContent, setModalContent] = useState(''); // Contenido del modal
 
-  // Manejador del envío del formulario
   const handleSubmit = async (e) => {
-    e.preventDefault(); // Prevenir el comportamiento por defecto del formulario
+    e.preventDefault();
 
     try {
       const response = await axios.post('http://localhost:3001/usuarios/', {
@@ -19,10 +21,12 @@ function RegistroUsuario() {
         contrasena,
       });
       console.log(response.data);
-      alert('Usuario registrado con éxito');
+      setModalContent('Usuario registrado con éxito');
+      setShowModal(true);
     } catch (error) {
       console.error('Hubo un error al registrar el usuario:', error);
-      alert('Error al registrar el usuario');
+      setModalContent('Error al registrar el usuario');
+      setShowModal(true);
     }
   };
 
@@ -54,9 +58,24 @@ function RegistroUsuario() {
                   </div>
                   <button type="submit" className="btn btn-primary">Registrar</button>
                 </form>
+                <div className="mt-3">
+          <p>¿Ya tienes una cuenta? <Link to="/">Inicie sesión aquí</Link></p>
+        </div>
+        <Modal show={showModal} onHide={() => setShowModal(false)}>
+        <Modal.Header closeButton>
+          <Modal.Title>Mensaje</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>{modalContent}</Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={() => setShowModal(false)}>
+            Cerrar
+          </Button>
+        </Modal.Footer>
+      </Modal>
               </div>
             </div>
           </div>
+          
         </div>
       </div>
     </>

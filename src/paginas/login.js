@@ -1,15 +1,15 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { useHistory, Link } from 'react-router-dom';
 
 function Login() {
-  // Estados para almacenar los valores de los inputs
   const [correo, setCorreo] = useState('');
   const [contrasena, setContrasena] = useState('');
+  const history = useHistory(); // Hook para manejar la navegación
 
-  // Manejador del envío del formulario
   const handleSubmit = async (e) => {
-    e.preventDefault(); // Prevenir el comportamiento por defecto del formulario
+    e.preventDefault();
 
     try {
       const response = await axios.post('http://localhost:3001/usuarios/login', {
@@ -17,8 +17,8 @@ function Login() {
         contrasena,
       });
       console.log(response.data);
-      alert('Autenticación exitosa');
-      // Aquí puedes redirigir al usuario o manejar el estado de la sesión como prefieras
+      
+      history.push('/tabla'); // Redirigir a la ruta /tabla
     } catch (error) {
       console.error('Error al iniciar sesión:', error);
       alert('Error al iniciar sesión');
@@ -45,6 +45,9 @@ function Login() {
                   </div>
                   <button type="submit" className="btn btn-primary">Iniciar Sesión</button>
                 </form>
+                <div className="mt-3 ">
+                  <p>¿No tienes una cuenta? <Link to="/registro">Regístrate</Link></p>
+                </div>
               </div>
             </div>
           </div>
