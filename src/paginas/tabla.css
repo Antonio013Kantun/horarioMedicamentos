@@ -1,0 +1,36 @@
+.morning-color td {
+  background-color: #fe6b6b !important; /* Rojo */
+  color: white !important; /* Texto blanco para contraste */
+}
+
+.noon-color td {
+  background-color: #ebff45 !important; /* Amarillo */
+  color: black !important; /* Texto negro para contraste */
+}
+
+.evening-color td {
+  background-color: #55ffc1 !important; /* Verde claro */
+  color: black !important; /* Texto negro para contraste */
+}
+
+.night-color td {
+  background-color: #5a54ff !important; /* Azul */
+  color: white !important; /* Texto blanco para contraste */
+}
+
+.only-color td {
+  background-color: #2e952d !important; /* Verde oscuro */
+  color: white !important; /* Texto blanco para contraste */
+}
+
+.horario-medicamentos th,
+.horario-medicamentos td {
+  border-left: 2px solid white !important; /* Borde izquierdo blanco */
+  border-right: 2px solid white !important; /* Borde derecho blanco */
+}
+
+.horario-medicamentos tr {
+  border-top: 2px solid white !important; /* Borde superior blanco */
+  border-bottom: 2px solid white !important; /* Borde inferior blanco */
+}
+
